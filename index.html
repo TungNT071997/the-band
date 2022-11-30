@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/responsive.css" />
     <link
       rel="stylesheet"
       href="./assets/fonts/themify-icons-font/themify-icons/themify-icons.css"
@@ -38,6 +39,10 @@
         <div class="search-btn">
           <i class="search-icon ti-search"></i>
         </div>
+        <div id="mobile-menu" class="mobile-menu-btn">
+          <i class="menu-icon ti-menu"></i>
+        </div>
+
         <!-- End search -->
       </div>
       <div id="slider">
@@ -287,6 +292,27 @@
       modal.addEventListener("click", RemoveTicket);
       modalContainer.addEventListener("click", function (e) {
         e.stopPropagation();
+      });
+    </script>
+    <script>
+      const header = document.getElementById("header");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const currentHeight = header.clientHeight;
+      // Close open menu
+      mobileMenu.onclick = function () {
+        const isClose = header.clientHeight === currentHeight;
+        if (isClose) {
+          header.style.height = "auto";
+        } else {
+          header.style.height = null;
+        }
+      };
+      // auto close menu
+      const menuItems = document.querySelectorAll('#nav li a[href*="#"]');
+      menuItems.forEach(function (menuItem) {
+        menuItem.onclick = function () {
+          header.style.height = null;
+        };
       });
     </script>
   </body>
